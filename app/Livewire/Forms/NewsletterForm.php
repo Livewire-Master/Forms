@@ -47,17 +47,14 @@ class NewsletterForm extends Form
     {
         $this->validate();
 
-        $joined = Newsletter::create(
-            [
-                'email'     => $this->email,
-                'full_name' => $this->full_name,
-            ]
-        );
+        $joined = Newsletter::create($this->all());
 
         if ($joined)
         {
             $this->is_succeeded = true;
             $this->message      = "You're joined to our newsletter service.";
+            $this->reset(); # way no.1
+            // $this->pull(); # way no.2 - use it after merges
         }
     }
 
@@ -68,7 +65,7 @@ class NewsletterForm extends Form
      *
      * @return void
      */
-    public function unsubscribe(int $id)
+    public function unsubscribe(int $id): void
     {
         $subscriber = Newsletter::find($id);
 
