@@ -11,6 +11,7 @@ class NewsletterForm extends Component
      * Full Name
      *
      * @var string
+     * @note u can use this for real-time validations: #[Rule(['required', 'string', 'min:3'])]
      */
     #[Validate]
     public string $full_name = '';
@@ -32,11 +33,11 @@ class NewsletterForm extends Component
     {
         return [
             'full_name' => [
-                'required', 'string', 'min:3'
+                'required', 'string', 'min:3',
             ],
 
-            'email'     => [
-                'required', 'email'
+            'email' => [
+                'required', 'email',
             ],
         ];
     }
