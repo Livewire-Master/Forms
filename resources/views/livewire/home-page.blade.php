@@ -44,41 +44,17 @@
             We ensure you that we won't use your data for commercial usage.
         </p>
         <form wire:submit.prevent="joinNewsletter">
-            <div>
-                <label for="input-full_name">
-                    Full Name <span>*</span>
-                </label>
-                <br>
-                <input
-                    wire:model="form.full_name"
-                    id="input-full_name"
-                    name="full_name"
-                    type="text"
-                >
-                @error('form.full_name')
-                <p style="color: #ff6d6d; margin-top: 4px">
-                    {{ $message }}
-                </p>
-                @enderror
-            </div>
+            <x-form.input
+                key="full_name"
+                model="form.full_name"
+                label="Full Name"
+            />
             <br>
-            <div>
-                <label for="input-email">
-                    Email <span>*</span>
-                </label>
-                <br>
-                <input
-                    wire:model="form.email"
-                    id="input-email"
-                    name="email"
-                    type="text"
-                >
-                @error('form.email')
-                <p style="color: #ff6d6d; margin-top: 4px">
-                    {{ $message }}
-                </p>
-                @enderror
-            </div>
+            <x-form.input
+                key="email"
+                model="form.email"
+                label="Email"
+            />
             <br>
             <button wire:loading.remove wire:target="joinNewsletter" type="submit">
                 Join Newsletter
