@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\NewsletterForm;
+use App\Models\Newsletter;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -15,6 +16,25 @@ class HomePage extends Component
      * @var NewsletterForm
      */
     public NewsletterForm $form;
+
+    /**
+     * Query to search
+     *
+     * @var string
+     */
+    public string $query = '';
+
+    public array $result = [];
+
+    public function updatedQuery($query): void
+    {
+        $this->result = Newsletter
+            ::where('email', 'like', "%$query%")
+            ->orWhere('full_name', 'like', "%$query%")
+            ->get()
+            ->toArray()
+        ;
+    }
 
     /**
      * Join to the newsletter

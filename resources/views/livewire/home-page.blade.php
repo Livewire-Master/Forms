@@ -6,6 +6,36 @@
         Here is your home page component
     </p>
     <hr>
+    <h2>
+        Search
+    </h2>
+    <p>
+        You're looking for: {{ $query }}
+    </p>
+    <div>
+        <label for="input-search">
+            Search <span>*</span>
+        </label>
+        <br>
+        <input
+            wire:model.live.throttle.500ms="query"
+            id="input-search"
+            name="query"
+            type="text"
+        >
+    </div>
+    <p>
+        Result: {{ count($result) }} subscriber(s)
+    </p>
+    <ul>
+        @foreach($result as $searchedSubscriber)
+            <li wire:key="ss-{{ $searchedSubscriber['id'] }}">
+                {{ $searchedSubscriber['full_name'] }} : <i>{{ $searchedSubscriber['email'] }}</i>
+            </li>
+        @endforeach
+    </ul>
+
+    <hr>
     <div>
         <h2>
             Join Our Newsletter
@@ -20,7 +50,7 @@
                 </label>
                 <br>
                 <input
-                    wire:model
+                    wire:model="form.full_name"
                     id="input-full_name"
                     name="full_name"
                     type="text"
@@ -38,7 +68,7 @@
                 </label>
                 <br>
                 <input
-                    wire:model
+                    wire:model="form.email"
                     id="input-email"
                     name="email"
                     type="text"
