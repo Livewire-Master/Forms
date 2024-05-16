@@ -24,6 +24,8 @@ class HomePage extends Component
      */
     public string $query = '';
 
+    public int $counts = 0;
+
     public array $result = [];
 
     public function updatedQuery($query): void

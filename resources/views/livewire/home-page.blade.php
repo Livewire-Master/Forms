@@ -7,6 +7,17 @@
     </p>
     <hr>
     <h2>
+        Counter
+    </h2>
+    <p>
+        Counts: {{ $counts }}
+    </p>
+    <x-form.counter wire:model="counts"/>
+    <button wire:click.prevent="$refresh">
+        update counts
+    </button>
+    <hr>
+    <h2>
         Search
     </h2>
     <p>
