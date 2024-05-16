@@ -65,9 +65,12 @@
     </div>
     <hr>
     <ul>
-        @foreach(\App\Models\Newsletter::all() as $newsletterUser)
-            <li wire:key="newsletter-user--{{ $newsletterUser->id }}">
-                {{ $newsletterUser->full_name }} : {{ $newsletterUser->email }}
+        @foreach(\App\Models\Newsletter::all() as $subscriber)
+            <li wire:key="newsletter-user--{{ $subscriber->id }}">
+                {{ $subscriber->full_name }} : {{ $subscriber->email }}
+                <button wire:click="unsubscribeFromNewsletter({{ $subscriber->id }})">
+                    Unsubscribe
+                </button>
             </li>
         @endforeach
     </ul>

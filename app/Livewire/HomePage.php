@@ -23,6 +23,18 @@ class HomePage extends Component
      */
     public function joinNewsletter(): void
     {
-        $this->form->join();
+        $this->form->subscribe();
+    }
+
+    /**
+     * Unsubscribe from newsletter based on user-subscription id
+     *
+     * @param int $id
+     *
+     * @return void
+     */
+    public function unsubscribeFromNewsletter(int $id): void
+    {
+        $this->form->unsubscribe($id);
     }
 }
