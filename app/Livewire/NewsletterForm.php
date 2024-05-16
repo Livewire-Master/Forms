@@ -12,7 +12,7 @@ class NewsletterForm extends Component
      *
      * @var string
      */
-    #[Validate(['required', 'numeric'])]
+    #[Validate]
     public string $full_name = '';
 
     /**
@@ -20,7 +20,26 @@ class NewsletterForm extends Component
      *
      * @var string
      */
+    #[Validate]
     public string $email = '';
+
+    /**
+     * Validation Rules
+     *
+     * @return array
+     */
+    public function rules(): array
+    {
+        return [
+            'full_name' => [
+                'required', 'string', 'min:3'
+            ],
+
+            'email'     => [
+                'required', 'email'
+            ],
+        ];
+    }
 
     /**
      * Register a user by its email to our newsletter service.
@@ -31,6 +50,6 @@ class NewsletterForm extends Component
     {
         $this->validate();
 
-        // 100% safe
+        dd($this->full_name, $this->email);
     }
 }

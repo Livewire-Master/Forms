@@ -12,7 +12,7 @@
             </label>
             <br>
             <input
-                wire:model="full_name"
+                wire:model.blur="full_name"
                 id="input-full_name"
                 name="full_name"
                 type="text"
@@ -30,11 +30,16 @@
             </label>
             <br>
             <input
-                wire:model="email"
+                wire:model.blur="email"
                 id="input-email"
                 name="email"
                 type="text"
             >
+            @error('email')
+            <p style="color: #ff6d6d; margin-top: 4px">
+                {{ $message }}
+            </p>
+            @enderror
         </div>
         <br>
         <button type="submit">
